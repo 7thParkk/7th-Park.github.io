@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>23spring_week6 | 7thPark</title><meta name="keywords" content="学习,代码随想录,开发,JavaWeb,计网"><meta name="author" content="北溟鱼"><meta name="copyright" content="北溟鱼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="回顾周三：  JS事件，ES6常用新特性，JS对象 vue初识  周四：  代码随想录刷题 JavaWeb整体理解、Cookie、Session、Filter、JSON、Ajax 编译原理——ant的录屏，受益匪浅  周五：  代码随想录刷题 阅读完《JavaScript  jQuery交互式Web前端开发 (Jon Duckett)》 啃书：《Java Web程序设计任务教程 (黑马程序员) 》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23spring_week6">
+<meta property="og:url" content="https://7th-park.github.io/2023/04/02/23spring-week6/index.html">
+<meta property="og:site_name" content="7thPark">
+<meta property="og:description" content="回顾周三：  JS事件，ES6常用新特性，JS对象 vue初识  周四：  代码随想录刷题 JavaWeb整体理解、Cookie、Session、Filter、JSON、Ajax 编译原理——ant的录屏，受益匪浅  周五：  代码随想录刷题 阅读完《JavaScript  jQuery交互式Web前端开发 (Jon Duckett)》 啃书：《Java Web程序设计任务教程 (黑马程序员) 》">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://7th-park.github.io/images/cover3.jpg">
+<meta property="article:published_time" content="2023-04-02T15:57:19.000Z">
+<meta property="article:modified_time" content="2023-04-04T06:01:03.788Z">
+<meta property="article:author" content="北溟鱼">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="代码随想录">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="计网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://7th-park.github.io/images/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://7th-park.github.io/2023/04/02/23spring-week6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '23spring_week6',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-04 14:01:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./images/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../images/cover3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">7thPark</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">23spring_week6</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-02T15:57:19.000Z" title="发表于 2023-04-02 23:57:19">2023-04-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-04T06:01:03.788Z" title="更新于 2023-04-04 14:01:03">2023-04-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%8D%E7%9B%98/">复盘</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="23spring_week6"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>周三：</p>
+<ol>
+<li>JS事件，ES6常用新特性，JS对象</li>
+<li>vue初识</li>
+</ol>
+<p>周四：</p>
+<ol>
+<li>代码随想录刷题</li>
+<li>JavaWeb整体理解、Cookie、Session、Filter、JSON、Ajax</li>
+<li>编译原理——ant的录屏，受益匪浅</li>
+</ol>
+<p>周五：</p>
+<ol>
+<li>代码随想录刷题</li>
+<li>阅读完《JavaScript  jQuery交互式Web前端开发 (Jon Duckett)》</li>
+<li>啃书：《Java Web程序设计任务教程 (黑马程序员) 》&amp;《深入浅出Vue.js (刘博文)》</li>
+</ol>
+<h2 id="代码随想录"><a href="#代码随想录" class="headerlink" title="代码随想录"></a>代码随想录</h2><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p><strong>C++中map、set、multimap，multiset的底层实现都是平衡二叉搜索树</strong></p>
+<p>深度优先遍历：前、中、后序遍历（递归法、迭代法）</p>
+<p>广度优先遍历：层次遍历（迭代法）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//节点的定义</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    TreeNode *left;</span><br><span class="line">    TreeNode *right;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二叉树的递归遍历"><a href="#二叉树的递归遍历" class="headerlink" title="二叉树的递归遍历"></a>二叉树的递归遍历</h4><p>postOrder：后序</p>
+<p>post有在……之后的意思</p>
+<h4 id="二叉树的迭代遍历"><a href="#二叉树的迭代遍历" class="headerlink" title="二叉树的迭代遍历"></a>二叉树的迭代遍历</h4><p>二叉树的迭代遍历需要搭配<strong>栈</strong>来使用</p>
+<p><strong>前序遍历</strong></p>
+<p>先将根节点放入栈中，然后将右孩子加入栈，再加入左孩子。（注意左右孩子的入栈顺序）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        stack&lt;TreeNode*&gt; st;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> result;</span><br><span class="line">        st.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="keyword">while</span> (!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            TreeNode* node = st.<span class="built_in">top</span>();                       <span class="comment">// 中</span></span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">            result.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">            <span class="keyword">if</span> (node-&gt;right) st.<span class="built_in">push</span>(node-&gt;right);           <span class="comment">// 右（空节点不入栈）</span></span><br><span class="line">            <span class="keyword">if</span> (node-&gt;left) st.<span class="built_in">push</span>(node-&gt;left);             <span class="comment">// 左（空节点不入栈）</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>中序遍历</strong></p>
+<p>前面的前序遍历的代码实际上是不能和中序遍历通用的</p>
+<p>原因是前序遍历的遍历顺序和处理顺序是相同的，而中序遍历不同</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">        stack&lt;TreeNode*&gt; st;</span><br><span class="line">        TreeNode* cur = root;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="literal">NULL</span> || !st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur != <span class="literal">NULL</span>) &#123; <span class="comment">// 指针来访问节点，访问到最底层</span></span><br><span class="line">                st.<span class="built_in">push</span>(cur); <span class="comment">// 将访问的节点放进栈</span></span><br><span class="line">                cur = cur-&gt;left;                <span class="comment">// 左</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur = st.<span class="built_in">top</span>(); <span class="comment">// 从栈里弹出的数据，就是要处理的数据（放进result数组里的数据）</span></span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">                result.<span class="built_in">push_back</span>(cur-&gt;val);     <span class="comment">// 中</span></span><br><span class="line">                cur = cur-&gt;right;               <span class="comment">// 右</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>后序遍历</strong></p>
+<img src="/2023/04/02/23spring-week6/image-20230320134335407.png" alt="image-20230320134335407" style="zoom:50%;">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        stack&lt;TreeNode*&gt; st;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> result;</span><br><span class="line">        st.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="keyword">while</span> (!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            TreeNode* node = st.<span class="built_in">top</span>();</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">            result.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">            <span class="keyword">if</span> (node-&gt;left) st.<span class="built_in">push</span>(node-&gt;left); <span class="comment">// 相对于前序遍历，这更改一下入栈顺序 （空节点不入栈）</span></span><br><span class="line">            <span class="keyword">if</span> (node-&gt;right) st.<span class="built_in">push</span>(node-&gt;right); <span class="comment">// 空节点不入栈</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(result.<span class="built_in">begin</span>(), result.<span class="built_in">end</span>()); <span class="comment">// 将结果反转之后就是左右中的顺序了</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二叉树的层序遍历"><a href="#二叉树的层序遍历" class="headerlink" title="二叉树的层序遍历"></a>二叉树的层序遍历</h4><p>二叉树的层序遍历需要<strong>队列</strong>来辅助实现</p>
+<p>一层一层遍历</p>
+<p>队列先进先出，符合一层一层遍历的逻辑，而用栈先进后出适合模拟深度优先遍历也就是递归的逻辑</p>
+<p>这种层序遍历方式就是图论中的广度优先遍历</p>
+<p><strong>迭代法</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">levelOrder</span>(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        que.<span class="built_in">push_back</span>(root);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> size = que.<span class="built_in">size</span>();</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line">            <span class="comment">// 这里一定要使用固定大小size，不要使用que.size()，因为que.size是不断变化的，这里非常经典</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">                que.<span class="built_in">pop</span>();</span><br><span class="line">                vec.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;left) que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;right) que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            result.<span class="built_in">push_back</span>(vec);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>递归法</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">order</span><span class="params">(TreeNode* cur, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; result, <span class="type">int</span> depth)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (result.<span class="built_in">size</span>() == depth) result.<span class="built_in">push_back</span>(<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">        result[depth].<span class="built_in">push_back</span>(cur-&gt;val);</span><br><span class="line">        <span class="built_in">order</span>(cur-&gt;left, result, depth + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">order</span>(cur-&gt;right, result, depth + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">levelOrder</span>(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="type">int</span> depth = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">order</span>(root, result, depth);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>个人还是喜欢最常用最好理解的用队列加以辅助的迭代法</p>
+<p><strong>例题1</strong></p>
+<img src="/2023/04/02/23spring-week6/image-20230320142457185.png" alt="image-20230320142457185" style="zoom: 80%;">
+
+<p>这道题其实是二叉树层序遍历的变形，我们在遍历每一层得到一个vector数组后，把每个vector数组最后一个元素单独拎出来即可</p>
+<p><strong>例题2</strong></p>
+<img src="/2023/04/02/23spring-week6/image-20230320144505502.png" alt="image-20230320144505502" style="zoom:80%;">
+
+<p>层序遍历，找到每一层的最大值</p>
+<p><strong>例题3</strong></p>
+<img src="/2023/04/02/23spring-week6/image-20230320190231755.png" alt="image-20230320190231755" style="zoom: 80%;">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归法</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">maxDepth</span>(root-&gt;left) &gt; <span class="built_in">maxDepth</span>(root-&gt;right) ? <span class="built_in">maxDepth</span>(root-&gt;left) + <span class="number">1</span> : <span class="built_in">maxDepth</span>(root-&gt;right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//迭代法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> depth = <span class="number">0</span>;</span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        que.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> size = que.<span class="built_in">size</span>();</span><br><span class="line">            depth++; <span class="comment">// 记录深度</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">                que.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;left) que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;right) que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> depth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>1、对称二叉树</p>
+<img src="/2023/04/02/23spring-week6/image-20230321102209050.png" alt="image-20230321102209050" style="zoom:50%;">
+
+<p>递归三部曲：</p>
+<ul>
+<li>确定递归函数的参数和返回值</li>
+<li>确定终止条件</li>
+<li>确定递归逻辑</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(TreeNode* left, TreeNode* right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left == <span class="literal">NULL</span> &amp;&amp; right != <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (left != <span class="literal">NULL</span> &amp;&amp; right == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (left == <span class="literal">NULL</span> &amp;&amp; right == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (left-&gt;val != right-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">compare</span>(left-&gt;left, right-&gt;right) &amp;&amp; <span class="built_in">compare</span>(left-&gt;right, right-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">compare</span>(root-&gt;left, root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2、求二叉树的最大深度、最小深度</p>
+<p>递归法</p>
+<p>迭代法：层序遍历</p>
+<p>3、斐波那契数列递归算法优化</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44543551/article/details/106461955">优化方法</a></p>
+<ul>
+<li>动态规划法</li>
+<li>迭代法</li>
+<li>尾递归法</li>
+<li>公式法</li>
+</ul>
+<h4 id="中序-后序-amp-中序-前序构造二叉树"><a href="#中序-后序-amp-中序-前序构造二叉树" class="headerlink" title="中序+后序&amp;中序+前序构造二叉树"></a>中序+后序&amp;中序+前序构造二叉树</h4><img src="/2023/04/02/23spring-week6/image-20230322205728396.png" alt="image-20230322205728396" style="zoom:67%;">
+
+<p>过程很熟悉，该怎么用代码实现？</p>
+<p>后序数组的最后一个元素为切割点，先切中序数组，根据中序数组，反过来再切后序数组。一层一层切下去，每次后序数组最后一个元素就是节点元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">traversal</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; inorder, vector&lt;<span class="type">int</span>&gt;&amp; postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (postorder.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> rootVal = postorder[postorder.<span class="built_in">size</span>() - <span class="number">1</span>];</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(rootVal);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (postorder.<span class="built_in">size</span>() == <span class="number">1</span>) <span class="keyword">return</span> root;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到中序遍历的切割点</span></span><br><span class="line">        <span class="type">int</span> ptr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; ptr &lt; inorder.<span class="built_in">size</span>(); ptr++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inorder[ptr] == rootVal) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//划分中序遍历和后序遍历</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">leftInorder</span><span class="params">(inorder.begin(), inorder.begin() + ptr)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">rightInorder</span><span class="params">(inorder.begin() + ptr + <span class="number">1</span>, inorder.end())</span></span>;        </span><br><span class="line"></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">leftPostorder</span><span class="params">(postorder.begin(), postorder.begin() + leftInorder.size())</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">rightPostorder</span><span class="params">(postorder.begin() + leftInorder.size(), postorder.end() - <span class="number">1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        root-&gt;left = <span class="built_in">traversal</span>(leftInorder, leftPostorder);</span><br><span class="line">        root-&gt;right = <span class="built_in">traversal</span>(rightInorder, rightPostorder);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; inorder, vector&lt;<span class="type">int</span>&gt;&amp; postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (inorder.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">traversal</span>(inorder, postorder);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>知道由后序+中序构建二叉树的代码怎么写，自然而然地，就可以明白前序+中序，前序的分割方式略有不同</p>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p>回溯是递归的副产品</p>
+<p>回溯法并不是什么高效的算法，因为回溯的本质是穷举，穷举所有可能</p>
+<p>回溯法解决的问题都可以抽象为树形结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//回溯算法伪代码</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(参数)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">        存放结果;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;</span><br><span class="line">        处理节点;</span><br><span class="line">        <span class="built_in">backtracking</span>(路径，选择列表); <span class="comment">// 递归</span></span><br><span class="line">        回溯，撤销处理结果</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第一次</strong>涉及回溯的二叉树题</p>
+<img src="/2023/04/02/23spring-week6/image-20230322120804406.png" alt="image-20230322120804406" style="zoom:50%;">
+
+<p>回溯和递归是一一对应的，有一个递归，就要有一个回溯</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//优雅&amp;精简写法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* root, string path, vector&lt;string&gt; &amp;res)</span> </span>&#123;</span><br><span class="line">        path += <span class="built_in">to_string</span>(root-&gt;val);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left == <span class="literal">NULL</span> &amp;&amp; root-&gt;right == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left) <span class="built_in">traversal</span>(root-&gt;left, path + <span class="string">&quot;-&gt;&quot;</span>, res);</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;right) <span class="built_in">traversal</span>(root-&gt;right, path + <span class="string">&quot;-&gt;&quot;</span>, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">binaryTreePaths</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        string path;</span><br><span class="line">        vector&lt;string&gt; res;</span><br><span class="line">        <span class="built_in">traversal</span>(root, path, res);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//原始写法，更容易理解每一步</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; path, vector&lt;string&gt;&amp; result)</span> </span>&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(cur-&gt;val); <span class="comment">// 中，中为什么写在这里，因为最后一个节点也要加入到path中 </span></span><br><span class="line">        <span class="comment">// 这才到了叶子节点</span></span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;left == <span class="literal">NULL</span> &amp;&amp; cur-&gt;right == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            string sPath;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; path.<span class="built_in">size</span>() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                sPath += <span class="built_in">to_string</span>(path[i]);</span><br><span class="line">                sPath += <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sPath += <span class="built_in">to_string</span>(path[path.<span class="built_in">size</span>() - <span class="number">1</span>]);</span><br><span class="line">            result.<span class="built_in">push_back</span>(sPath);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;left) &#123; <span class="comment">// 左 </span></span><br><span class="line">            <span class="built_in">traversal</span>(cur-&gt;left, path, result);</span><br><span class="line">            path.<span class="built_in">pop_back</span>(); <span class="comment">// 回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;right) &#123; <span class="comment">// 右</span></span><br><span class="line">            <span class="built_in">traversal</span>(cur-&gt;right, path, result);</span><br><span class="line">            path.<span class="built_in">pop_back</span>(); <span class="comment">// 回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">binaryTreePaths</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; result;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; path;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> result;</span><br><span class="line">        <span class="built_in">traversal</span>(root, path, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>二叉树的最近公共祖先</strong></p>
+<img src="/2023/04/02/23spring-week6/image-20230325105915824.png" alt="image-20230325105915824" style="zoom: 67%;">
+
+
+
+
+
+
+
+<h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><p>C++中常量<strong>INT_MAX和INT_MIN</strong>分别表示最大、最小整数，定义在头文件limits.h中</p>
+<h2 id="计网"><a href="#计网" class="headerlink" title="计网"></a>计网</h2><h3 id="关于GET和POST请求"><a href="#关于GET和POST请求" class="headerlink" title="关于GET和POST请求"></a>关于GET和POST请求</h3><p>根据 RFC 规范，<strong>GET 的语义是从服务器获取指定的资源</strong>，<strong>POST 的语义是根据请求负荷（报文body）对指定的资源做出处理</strong></p>
+<p>GET：URL</p>
+<p>POST：BODY</p>
+<p>HTTP中<strong>安全</strong>和<strong>幂等</strong>的概念：</p>
+<ul>
+<li>在 HTTP 协议里，所谓的「安全」是指请求方法不会「破坏」服务器上的资源。</li>
+<li>所谓的「幂等」，意思是多次执行相同的操作，结果都是「相同」的。</li>
+</ul>
+<img src="/2023/04/02/23spring-week6/image-20230320160659779.png" alt="image-20230320160659779" style="zoom: 67%;">
+
+<img src="/2023/04/02/23spring-week6/image-20230320160740791.png" alt="image-20230320160740791" style="zoom:67%;">
+
+<p>浏览器地址拦看不到 POST 提交的 body 数据，但是只要抓个包就都能看到了。所以，要避免传输过程中数据被窃取，就要使用 HTTPS 协议，这样所有 HTTP 的数据都会被加密传输。</p>
+<img src="/2023/04/02/23spring-week6/image-20230320161041411.png" alt="image-20230320161041411" style="zoom:67%;">
+
+<h3 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h3><p>两种实现方式</p>
+<ul>
+<li>强制缓存</li>
+<li>协商缓存</li>
+</ul>
+<blockquote>
+<p>强缓存指的是只要浏览器判断缓存没有过期，则直接使用浏览器的本地缓存，决定是否使用缓存的主动性在于浏览器这边</p>
+<p>协商缓存就是与服务器协商之后，通过协商结果来判断是否使用本地缓存</p>
+</blockquote>
+<p><strong>只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求</strong></p>
+<img src="23spring_week6.assets/http缓存.png" alt="img" style="zoom:50%;">
+
+<p>请求资源，先看强制缓存是否过期，没有过期，直接用，结束；过期，则用协商缓存，和服务期通过If-None-Match字段或If-Modified-Since判断是否重发</p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><p>当浏览网站时，”事件“会发生在浏览器中，而这些事件都可以用来触发JS代码中的函数</p>
+<ul>
+<li>UI事件：当与浏览器UI本身（而不是网页）交互时发生的事件，比如load、unload、error、resize、scroll</li>
+<li>键盘事件：当用户操作键盘时发生，比如keydown、keyup、keypress</li>
+<li>鼠标事件：当用户操作鼠标、触控板或触摸屏时发生，比如click、dbclick、mousedown等等</li>
+<li>焦点事件：一个元素得到或失去焦点时发生 focus、blur</li>
+<li>表单事件：当用户与表单元素进行交互时发生</li>
+<li>变动事件：脚本修改了DOM结构后发生</li>
+</ul>
+<p>将事件绑定到元素的三种方法：</p>
+<ul>
+<li>HTML事件处理程序:<code>&lt;a onclick=&quot;...&quot;/&gt;</code>    不推荐使用</li>
+<li>传统的DOM事件处理程序：缺点是只能在一个事件上附加一个函数（使用时要在事件名称前加上“on”）</li>
+<li>第2级DOM监听器</li>
+</ul>
+<p>两种事件流：</p>
+<ul>
+<li>事件冒泡（默认）：事件从最具体的节点向外传播到最宽泛的节点</li>
+<li>事件捕获：事件从最宽泛的节点开始向内传播到最具体的节点</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ac1787f6c50f">ES6常用新特性</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65059409">关于JS对象的问题</a></p>
+<p>“在JavaScript中，一切皆对象”这个说法是不完全正确的</p>
+<p>JS中的数据类型可以分为原始数据类型和对象</p>
+<p>原始数据类型在底层上直接实现，不是object</p>
+<p>但是我们常常能发现这些原始数据类型可以像对象一样使用，比如<code>let x = &quot;abc&quot;;</code>此时<code>x.length</code>则等于3</p>
+<p>这是为什么呢？<br>这是因为JS会自动进行 <strong>Auto-Boxing（临时包装）</strong>的过程，首先将其转换为临时<strong>包装器对象</strong>（比如string=&gt;String），再访问其上的属性或方法，而不会影响原始值类型的属性。</p>
+<h3 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41911570/article/details/83279327">一篇总结JavaWeb的文章</a></p>
+<p>JSP的本质的是一个Servlet</p>
+<ul>
+<li>JSP的脚本元素    <code>&lt;% %&gt;</code></li>
+<li>JSP的表达式  <code>&lt;%= %&gt;</code></li>
+</ul>
+<p>EL表达式是JSP内置的表达式语言，<code>$&#123;...&#125;</code></p>
+<p>XML的用途：</p>
+<ul>
+<li>配置文件：如JavaWeb中的Web.xml</li>
+<li>数据交换格式</li>
+<li>数据存储</li>
+</ul>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><blockquote>
+<p>cookie 的出现是因为 HTTP 是无状态的一种协议，换句话说，服务器记不住你，可能你每刷新一次网页，就要重新输入一次账号密码进行登录。这显然是让人无法接受的，cookie 的作用就好比服务器给你贴个标签，然后你每次向服务器再发请求时，服务器就能够 cookie 认出你</p>
+</blockquote>
+<p>服务器通知客户端保存键值对的一种技术，客户端有了 Cookie 后，每次请求都发送给服务器</p>
+<p>一般每个Cookie的大小最大为4kb</p>
+<p>Cookie应用举例</p>
+<p>免输入用户名登录</p>
+<img src="/2023/04/02/23spring-week6/image-20230323151213277.png" alt="image-20230323151213277" style="zoom: 67%;">
+
+<img src="/2023/04/02/23spring-week6/image-20230323151231647.png" alt="image-20230323151231647" style="zoom:67%;">
+
+<p>创建cookie，并把cookie返回给客户端</p>
+<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>Session 是一个接口（HttpSession），Session 就是会话，用来维护客户端和服务器之间关联的一种技术。 每个客户端都有自己的一个 Session 会话，Session 会话中，我们经常用来保存用户登录之后的信息。</p>
+<p>抽象：<strong>一个 cookie 可以认为是一个「变量」，形如 <code>name=value</code>，存储在浏览器；一个 session 可以理解为一种数据结构，多数情况是「映射」（键值对），存储在服务器上</strong>。</p>
+<p>Dao=&gt;Service=&gt;Web(Servlet)</p>
+<h4 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h4><p>Filter过滤器的作用是：拦截请求、过滤响应</p>
+<p>比如必须先登录才能访问admin文件夹下的资源，那么这个时候我们应该添加一个过滤器，检查是否登录</p>
+<img src="/2023/04/02/23spring-week6/image-20230323161312363.png" alt="image-20230323161312363" style="zoom:67%;">
+
+
+
+<p>Filter过滤器的使用步骤：</p>
+<ol>
+<li>编写一个类去实现Filter接口</li>
+<li>实现过滤方法doFilter()</li>
+<li>到web.xml中去配置Filter的拦截路径</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AdminFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* doFilter 方法，专门用于拦截请求。可以做权限检查</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain</span></span><br><span class="line"><span class="params">    filterChain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">        <span class="type">HttpServletRequest</span> <span class="variable">httpServletRequest</span> <span class="operator">=</span> (HttpServletRequest) servletRequest;</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> httpServletRequest.getSession();</span><br><span class="line">        <span class="type">Object</span> <span class="variable">user</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        <span class="comment">// 如果等于 null，说明还没有登录</span></span><br><span class="line">        <span class="keyword">if</span> (user == <span class="literal">null</span>) &#123;</span><br><span class="line">            servletRequest.getRequestDispatcher(<span class="string">&quot;/login.jsp&quot;</span>).forward(servletRequest,servletResponse);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 让程序继续往下访问用户的目标资源</span></span><br><span class="line">        filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Filter声明周期的几个方法：</p>
+<p>构造器方法=&gt;init初始化方法（web工程启动时执行，意味着Filter在Web工程启动时创建）=&gt;doFilter方法（每次拦截到请求，就会执行）=&gt;destroy方法（停止Web工程时执行）</p>
+<p>FilterChain过滤器链</p>
+<p>顾名思义，就是多个Filter组合使用，它们执行的优先顺序由在web.xml文件中配置的顺序决定</p>
+<h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>一种轻量级的数据交换格式</p>
+<p>一般的，我们要操作json中的数据的时候，需要json对象的格式；我们要在客户端和服务器之间进行数据交换的时候，使用json字符串</p>
+<h4 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h4><p>即“Asynchronous Javascript And XML”（异步 JavaScript 和 XML），是指一种创建交互式网页应用的网页开发 技术</p>
+<p><strong>Ajax 是一种浏览器通过 js 异步发起请求，局部更新页面的技术</strong></p>
+<p>Ajax 请求的局部更新，浏览器地址栏不会发生变化 局部更新不会舍弃原来页面的内容</p>
+<p>在使用Ajax时，浏览器会从一台Web服务器请求信息，然后处理该服务器的响应（HTML、XML或者JSON格式等）并将它显示在页面上。</p>
+<p>浏览器会使用XMLHttpRequest对象来创建Ajax请求，服务器响应浏览器的请求之后，同一个XMLHttpRequest对象会继续处理返回的结果</p>
+<p>核心就是<strong>创建请求和处理请求</strong></p>
+<p>四步：</p>
+<ol>
+<li>首先创建XMLHttpRequest</li>
+<li>调用open方法设置请求参数</li>
+<li>在send方法前绑定onreadystatechange事件，处理请求完成之后的操作</li>
+<li>调用send方法发送请求</li>
+</ol>
+<img src="/2023/04/02/23spring-week6/image-20230323171505555.png" alt="image-20230323171505555" style="zoom: 80%;">
+
+<p>ajax请求发送访问服务器中的ajaxServlet中的响应程序，该响应程序可以返回一些数据供页面显示</p>
+<h3 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h3><p>jQuery就是JS文件，它的作用是为了更加方便的编写JS</p>
+<p><strong>选取</strong>元素与<strong>操作</strong>元素</p>
+<ul>
+<li>使用CSS样式选择器从DOM树中选择一个或多个节点</li>
+<li>使用jQuery内置的方法来处理选取结果中的元素</li>
+</ul>
+<p>查找元素</p>
+<p><img src="/2023/04/02/23spring-week6/image-20230323193009082.png" alt="image-20230323193009082"></p>
+<p><img src="/2023/04/02/23spring-week6/image-20230323193044089.png" alt="image-20230323193044089"></p>
+<p><img src="/2023/04/02/23spring-week6/image-20230323193054221.png" alt="image-20230323193054221"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="function">()=&gt;</span> &#123;</span><br><span class="line">	<span class="comment">//js code</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//页面准备好之后就会执行js code</span></span><br><span class="line"><span class="comment">//一下是简写</span></span><br><span class="line">$(() =&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">选取元素：$(<span class="string">&quot;selector&quot;</span>)</span><br><span class="line">同时会创建一个jQuery对象，然后我们就可以调用jQuery的一些列方法</span><br><span class="line">如果我们要把jQuery对象保存到一个变量中</span><br><span class="line"><span class="keyword">let</span> $objectName = $(<span class="string">&quot;selector&quot;</span>);</span><br><span class="line">使用该对象的时候也要带上$，表明这是一个jQuery对象</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;ul&#x27;</span>).<span class="title function_">on</span>(<span class="string">&quot;click&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">//给元素绑定事件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>CSS中的class属性可以有多个值，用空格隔开即可</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://7th-Park.github.io">北溟鱼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://7th-park.github.io/2023/04/02/23spring-week6/">https://7th-park.github.io/2023/04/02/23spring-week6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://7th-Park.github.io" target="_blank">7thPark</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/">代码随想录</a><a class="post-meta__tags" href="/tags/%E5%BC%80%E5%8F%91/">开发</a><a class="post-meta__tags" href="/tags/JavaWeb/">JavaWeb</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%BD%91/">计网</a></div><div class="post_share"><div class="social-share" data-image="/../images/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/04/23spring-week7/"><img class="prev-cover" src="/../images/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">23spring-week7</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/21/23Spring-Week5/"><img class="next-cover" src="/../images/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">23Spring_Week5</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/03/21/23Spring-Week4/" title="23Spring_Week4"><img class="cover" src="/../images/cover4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-21</div><div class="title">23Spring_Week4</div></div></a></div><div><a href="/2023/03/07/23spring_week3/" title="23Spring_Week3"><img class="cover" src="/../images/cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-07</div><div class="title">23Spring_Week3</div></div></a></div><div><a href="/2023/03/21/23Spring-Week5/" title="23Spring_Week5"><img class="cover" src="/../images/cover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-21</div><div class="title">23Spring_Week5</div></div></a></div><div><a href="/2023/04/04/23spring-week7/" title="23spring-week7"><img class="cover" src="/../images/cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-04</div><div class="title">23spring-week7</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzI3Ni8zMzc0MA=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./images/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">北溟鱼</div><div class="author-info__description">我走得很慢，但从不后退</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/7th-Park"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/7th-Park" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2459406270@qq.com" target="_blank" title="邮件"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！！！此博客用于记录学习上的收获与生活中值得留恋的回忆~如果有建议或者想要交流,请联系QQ:2459406270</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">代码随想录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">2.1.</span> <span class="toc-text">二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86"><span class="toc-number">2.1.1.</span> <span class="toc-text">二叉树的递归遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86"><span class="toc-number">2.1.2.</span> <span class="toc-text">二叉树的迭代遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">2.1.3.</span> <span class="toc-text">二叉树的层序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F-%E5%90%8E%E5%BA%8F-amp-%E4%B8%AD%E5%BA%8F-%E5%89%8D%E5%BA%8F%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">2.1.4.</span> <span class="toc-text">中序+后序&amp;中序+前序构造二叉树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BA%AF"><span class="toc-number">2.2.</span> <span class="toc-text">回溯</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C"><span class="toc-number">3.</span> <span class="toc-text">C++</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%BD%91"><span class="toc-number">4.</span> <span class="toc-text">计网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EGET%E5%92%8CPOST%E8%AF%B7%E6%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">关于GET和POST请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E7%BC%93%E5%AD%98"><span class="toc-number">4.2.</span> <span class="toc-text">HTTP缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91"><span class="toc-number">5.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JS"><span class="toc-number">5.1.</span> <span class="toc-text">JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaWeb"><span class="toc-number">5.2.</span> <span class="toc-text">JavaWeb</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookie"><span class="toc-number">5.2.1.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session"><span class="toc-number">5.2.2.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Filter"><span class="toc-number">5.2.3.</span> <span class="toc-text">Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSON"><span class="toc-number">5.2.4.</span> <span class="toc-text">JSON</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ajax"><span class="toc-number">5.2.5.</span> <span class="toc-text">Ajax</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery"><span class="toc-number">5.3.</span> <span class="toc-text">jQuery</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/04/23spring-week7/" title="23spring-week7"><img src="/../images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23spring-week7"/></a><div class="content"><a class="title" href="/2023/04/04/23spring-week7/" title="23spring-week7">23spring-week7</a><time datetime="2023-04-04T06:04:40.000Z" title="发表于 2023-04-04 14:04:40">2023-04-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/02/23spring-week6/" title="23spring_week6"><img src="/../images/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23spring_week6"/></a><div class="content"><a class="title" href="/2023/04/02/23spring-week6/" title="23spring_week6">23spring_week6</a><time datetime="2023-04-02T15:57:19.000Z" title="发表于 2023-04-02 23:57:19">2023-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/21/23Spring-Week5/" title="23Spring_Week5"><img src="/../images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23Spring_Week5"/></a><div class="content"><a class="title" href="/2023/03/21/23Spring-Week5/" title="23Spring_Week5">23Spring_Week5</a><time datetime="2023-03-21T13:26:21.000Z" title="发表于 2023-03-21 21:26:21">2023-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/21/23Spring-Week4/" title="23Spring_Week4"><img src="/../images/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23Spring_Week4"/></a><div class="content"><a class="title" href="/2023/03/21/23Spring-Week4/" title="23Spring_Week4">23Spring_Week4</a><time datetime="2023-03-21T13:22:21.000Z" title="发表于 2023-03-21 21:22:21">2023-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/21/%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Ch1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="王道操作系统-Ch1学习笔记"><img src="/../images/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="王道操作系统-Ch1学习笔记"/></a><div class="content"><a class="title" href="/2023/03/21/%E7%8E%8B%E9%81%93%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Ch1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="王道操作系统-Ch1学习笔记">王道操作系统-Ch1学习笔记</a><time datetime="2023-03-21T12:18:52.000Z" title="发表于 2023-03-21 20:18:52">2023-03-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/../images/cover3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 北溟鱼</div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
