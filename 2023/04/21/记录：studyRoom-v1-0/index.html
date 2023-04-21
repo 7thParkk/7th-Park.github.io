@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>记录：studyRoom_v1.0 | 7thPark</title><meta name="keywords" content="项目,自习室"><meta name="author" content="北溟鱼"><meta name="copyright" content="北溟鱼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SSM重写自习室项目问题记录问题1目前为止，登录和注册功能传递的密码都是未经处理直接传递，登录是在json中，注册是以queryString格式，后面需要进行脱敏优化 问题2注册用户时，很多数据最开始并没有插入值，可以设置初始值为空串，不然会是null 问题3点击忘记密码之后，跳回首页的时候，出现了一系列问题，目前猜测和alert有关 已排查出问题，是因为忘记密码按钮包含在注册的form表单中，该">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录：studyRoom_v1.0">
+<meta property="og:url" content="https://7th-park.github.io/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/index.html">
+<meta property="og:site_name" content="7thPark">
+<meta property="og:description" content="SSM重写自习室项目问题记录问题1目前为止，登录和注册功能传递的密码都是未经处理直接传递，登录是在json中，注册是以queryString格式，后面需要进行脱敏优化 问题2注册用户时，很多数据最开始并没有插入值，可以设置初始值为空串，不然会是null 问题3点击忘记密码之后，跳回首页的时候，出现了一系列问题，目前猜测和alert有关 已排查出问题，是因为忘记密码按钮包含在注册的form表单中，该">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://7th-park.github.io/images/cover2.jpg">
+<meta property="article:published_time" content="2023-04-21T06:18:08.000Z">
+<meta property="article:modified_time" content="2023-04-21T06:20:02.089Z">
+<meta property="article:author" content="北溟鱼">
+<meta property="article:tag" content="项目">
+<meta property="article:tag" content="自习室">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://7th-park.github.io/images/cover2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://7th-park.github.io/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '记录：studyRoom_v1.0',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-21 14:20:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./images/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../images/cover2.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">7thPark</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">记录：studyRoom_v1.0</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-21T06:18:08.000Z" title="发表于 2023-04-21 14:18:08">2023-04-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-21T06:20:02.089Z" title="更新于 2023-04-21 14:20:02">2023-04-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="记录：studyRoom_v1.0"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="SSM重写自习室项目"><a href="#SSM重写自习室项目" class="headerlink" title="SSM重写自习室项目"></a>SSM重写自习室项目</h1><h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><h3 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h3><p>目前为止，登录和注册功能传递的密码都是未经处理直接传递，登录是在json中，注册是以queryString格式，后面需要进行脱敏优化</p>
+<h3 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h3><p>注册用户时，很多数据最开始并没有插入值，可以设置初始值为空串，不然会是null</p>
+<h3 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h3><p>点击忘记密码之后，跳回首页的时候，出现了一系列问题，目前猜测和alert有关</p>
+<p>已排查出问题，是因为忘记密码按钮包含在注册的form表单中，该按钮的默认类型时submit，所以我点击该按钮也会进行一次请求，而我并不需要这个请求，所以应该将该按钮的类型改为普通的button，即<code>type=&quot;button&quot;</code></p>
+<h3 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h3><p>太痛苦了！！！！！<br>每个功能几乎都出现了bug，服了</p>
+<p><strong>尤其是选择重定向或者是请求转发带来了很多的路径问题，炸裂（枯了</strong></p>
+<p>问题已解决！！解决办法就是js文件中进行页面跳转的时候用绝对路径，一定不会出错，绝对路径以“/”开头，表示项目的根目录，即webapp下</p>
+<h2 id="导入依赖、配置相关配置"><a href="#导入依赖、配置相关配置" class="headerlink" title="导入依赖、配置相关配置"></a>导入依赖、配置相关配置</h2><p>可以从我学习SSM整合的笔记中复制</p>
+<h2 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h2><ul>
+<li>登录成功跳回首页，原先登录按钮的值变为用户名</li>
+<li>登录失败还是停在原先的登录页面，信息框中提示错误</li>
+</ul>
+<h2 id="用户注册"><a href="#用户注册" class="headerlink" title="用户注册"></a>用户注册</h2><p>用户注册成功后，信息框中显示“注册成功，请返回登录！”</p>
+<h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>用户成功登录后，再次点击原先的登录键（显示的内容已更改为用户名），就会显示用户的信息。</p>
+<p><del>因此，可以给显示用户信息的controller添加一个拦截器，判断用户是否登录。如果登录，则跳转到显示用户信息的页面；如果未登录，则跳转到登录页面</del></p>
+<p>拦截器个人理解还是最好用在是否允许跳转到某一个页面，像这样选择跳转到那个页面，我最终还是选择在controller中进行判断，即session中是否存在“user”属性</p>
+<p><img src="/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/image-20230412204939010.png" alt="image-20230412204939010"></p>
+<p><strong>后端逻辑已跑通！！！</strong></p>
+<p><strong>踩坑</strong></p>
+<p>我之前在js中给这个登录按钮添加一个函数，即点击跳转到登陆页面；现在又在controller中添加了跳转的逻辑，导致登陆成功之后再点击这个按钮，有的时候跳转到登陆页面，有的时候跳转到用户信息页面，还被困扰了好久，瞎猜了一大堆原因（笑哭</p>
+<h2 id="编辑用户信息"><a href="#编辑用户信息" class="headerlink" title="编辑用户信息"></a>编辑用户信息</h2><p><strong>踩坑</strong></p>
+<p>使用mybatis的时候，如果dao层的接口有多个参数，<strong>一定一定一定要加上<code>@param</code>注解</strong>，不然mapper映射文件无法识别对应参数，即使名字相同也不行！！！如果只有一个参数是可以省略不写的</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>注意，我在用户成功登录之后在session中保存了该用户的实体类，参数名为“user”</p>
+<h3 id="退出登录功能还未实现"><a href="#退出登录功能还未实现" class="headerlink" title="退出登录功能还未实现"></a>退出登录功能还未实现</h3><p>已实现，删除销毁session（<code>invalidate</code>），跳回首页即可</p>
+<h2 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h2><p>又要绞尽脑汁写一个尽量精美的前端页面了</p>
+<ul>
+<li>用户信息</li>
+<li>点击三个自习室按钮，分别跳转到各自的自习室</li>
+</ul>
+<p>一共四个页面</p>
+<p><strong>踩坑</strong></p>
+<p><img src="/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/image-20230414010333446.png" alt="image-20230414010333446"></p>
+<p>导入的js文件如果用到jQuery，需要在该文件之前导入jQuery文件，不然该文件是无法生效的</p>
+<p><strong>技巧</strong></p>
+<p><img src="/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/image-20230414130011158.png" alt="image-20230414130011158"></p>
+<p>.toggle()函数很好用，可以让元素的显示状态和当前相反，具体地说，<code>.toggle()</code>方法将检查元素的当前显示状态，并将其更改为相反的状态。如果元素当前可见，则将其隐藏，即将其”display”属性设置为”none”。如果元素当前隐藏，则将其显示，即将其”display”属性”设置为原始值（通常为”block”或”inline”）。</p>
+<blockquote>
+<p>display:none 可以隐藏元素，且元素不占据之前的位置</p>
+</blockquote>
+<p><strong>踩坑</strong></p>
+<p>html中form表单中input元素的默认值是不会被提交上去的，所以如果form表单中有的input元素就是默认值，这个时候点击提交按钮是无效的，因为必须每个input元素都要提交值</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>后面我又添加了展示用户自习的时间信息，展示所有用户自习时间排行榜的功能</p>
+<p>所以目前为止，自习室的基本功能已经全部实现，后续会继续完善发布帖子、组队等功能</p>
+<p>很是开心，虽然没有用到很复杂的技术，但这毕竟是我独立完成的第一个项目！后面继续加油吧~</p>
+<p><strong>项目代码地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/7th-Park/StudyRoomSSM">https://github.com/7th-Park/StudyRoomSSM</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://7th-Park.github.io">北溟鱼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://7th-park.github.io/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/">https://7th-park.github.io/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://7th-Park.github.io" target="_blank">7thPark</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE/">项目</a><a class="post-meta__tags" href="/tags/%E8%87%AA%E4%B9%A0%E5%AE%A4/">自习室</a></div><div class="post_share"><div class="social-share" data-image="/../images/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/04/21/23spring-week9/"><img class="next-cover" src="/../images/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">23spring_week9</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzI3Ni8zMzc0MA=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./images/head.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">北溟鱼</div><div class="author-info__description">我走得很慢，但从不后退</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/7th-Park"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/7th-Park" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2459406270@qq.com" target="_blank" title="邮件"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！！！此博客用于记录学习上的收获与生活中值得留恋的回忆~如果有建议或者想要交流,请联系QQ:2459406270</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SSM%E9%87%8D%E5%86%99%E8%87%AA%E4%B9%A0%E5%AE%A4%E9%A1%B9%E7%9B%AE"><span class="toc-text">SSM重写自习室项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-text">问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%981"><span class="toc-text">问题1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%982"><span class="toc-text">问题2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%983"><span class="toc-text">问题3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%984"><span class="toc-text">问题4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96%E3%80%81%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-text">导入依赖、配置相关配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">用户登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C"><span class="toc-text">用户注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">用户信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">编辑用户信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%80%E5%87%BA%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%E8%BF%98%E6%9C%AA%E5%AE%9E%E7%8E%B0"><span class="toc-text">退出登录功能还未实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86"><span class="toc-text">前端部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE"><span class="toc-text">结尾</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/" title="记录：studyRoom_v1.0"><img src="/../images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记录：studyRoom_v1.0"/></a><div class="content"><a class="title" href="/2023/04/21/%E8%AE%B0%E5%BD%95%EF%BC%9AstudyRoom-v1-0/" title="记录：studyRoom_v1.0">记录：studyRoom_v1.0</a><time datetime="2023-04-21T06:18:08.000Z" title="发表于 2023-04-21 14:18:08">2023-04-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/21/23spring-week9/" title="23spring_week9"><img src="/../images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23spring_week9"/></a><div class="content"><a class="title" href="/2023/04/21/23spring-week9/" title="23spring_week9">23spring_week9</a><time datetime="2023-04-21T06:15:06.000Z" title="发表于 2023-04-21 14:15:06">2023-04-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/11/SSM%E6%95%B4%E5%90%88/" title="SSM整合"><img src="/../images/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SSM整合"/></a><div class="content"><a class="title" href="/2023/04/11/SSM%E6%95%B4%E5%90%88/" title="SSM整合">SSM整合</a><time datetime="2023-04-11T12:42:08.000Z" title="发表于 2023-04-11 20:42:08">2023-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/11/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Spring学习笔记"><img src="/../images/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring学习笔记"/></a><div class="content"><a class="title" href="/2023/04/11/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Spring学习笔记">Spring学习笔记</a><time datetime="2023-04-11T12:41:26.000Z" title="发表于 2023-04-11 20:41:26">2023-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/11/23spring-week8/" title="23spring-week8"><img src="/../images/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="23spring-week8"/></a><div class="content"><a class="title" href="/2023/04/11/23spring-week8/" title="23spring-week8">23spring-week8</a><time datetime="2023-04-10T16:20:05.000Z" title="发表于 2023-04-11 00:20:05">2023-04-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/../images/cover2.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 北溟鱼</div><div class="footer_custom_text">欢迎来到我的博客~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
